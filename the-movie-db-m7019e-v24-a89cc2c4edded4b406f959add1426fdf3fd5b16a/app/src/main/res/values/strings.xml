@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Book DB</string>
+    <string name="movie_detail">Movie Details</string>
+    <string name="back_button">Back</string>
+    <string name="favourite_page">Favourites</string>
+    <string name="Grid">Grid</string>
+    <string name="Review_page">Review page</string>
+    <string name="Watch_later">Watch Later</string>
+    <string name="popular_movies">Popular Movies</string>
+    <string name="top_rated_movies">Top Rated</string>
+    <string name="saved_movies">Saved Movies</string>
+
+
+
+
+    <string name="open_homepage_with">Open with…</string>
+
+
+
+
+</resources>
