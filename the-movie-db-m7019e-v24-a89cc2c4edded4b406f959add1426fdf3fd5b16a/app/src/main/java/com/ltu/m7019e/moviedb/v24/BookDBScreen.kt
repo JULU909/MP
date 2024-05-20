@@ -45,6 +45,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.unit.dp
 import com.ltu.m7019e.moviedb.v24.ui.screens.BookListScreen
+import com.ltu.m7019e.moviedb.v24.ui.screens.BookListScreenGrid
 import com.ltu.m7019e.moviedb.v24.ui.screens.BooksDetailScreen
 import com.ltu.m7019e.moviedb.v24.ui.screens.FavouriteMoviesScreen
 
@@ -129,7 +130,7 @@ fun BookDBAppBar(
                     //colors = ButtonDefaults.buttonColors(containerColor = Color.Blue)
                 ) {
                     Icon(
-                        imageVector = rememberGridView(), //i cant find an icon for grid..
+                        imageVector = rememberGridView(),
                         contentDescription = "Grid Icon"
                     )
                 }
@@ -200,7 +201,8 @@ fun MovieDBApp(
 
             }
             composable(route = MovieDBScreen.Grid.name) {
-//                BookListScreenGrid(movieDBViewModel = movieDBViewModel, onBookListItemClicked = {})
+                BookListScreenGrid(movieDBViewModel = movieDBViewModel, onBookListItemClicked = {
+                    navController.navigate(MovieDBScreen.Detail.name)} )
             }
 
             composable(route = MovieDBScreen.Detail.name) {

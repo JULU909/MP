@@ -16,7 +16,7 @@ data class Book(
     var title: String = "",
 
     @SerialName(value = "covers")
-    var covers: List<Int>,
+    var covers: List<Int>? = null,
 
     @SerialName(value = "publish_date")
     var publishDate: String = "",
@@ -30,6 +30,7 @@ data class Book(
     @SerialName(value = "subjects")
     var subjects: List<String>
 )
+
 
 // Used for one specific work
 @Serializable
@@ -53,6 +54,14 @@ data class Work(
     @SerialName(value = "first_publish_date")
     var firstPublishDate: String? = null
 )
+{
+    val coverImage: Int
+        get() = covers?.firstOrNull() ?: DEFAULT_PLACEHOLDER_IMAGE
+
+    companion object {
+        const val DEFAULT_PLACEHOLDER_IMAGE = 0 // Replace with your actual placeholder image resource ID
+    }
+}
 
 // For many works, used in query
 @Serializable

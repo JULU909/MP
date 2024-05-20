@@ -243,25 +243,13 @@ fun BookListItemCard(
                     )
                 }
 
-                Button(
-                    onClick = {
-                        //onWatchLaterClicked(movie)
-                    },
-                    modifier = Modifier
-                        .padding(top = 16.dp),
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFc74848))
-                ) {
-                    Icon(
-                        imageVector = rememberShoppingBag(),
-                        contentDescription = "Wishlist Icon"
-                    )
 
                 }
             }
         }
 
     }
-}
+
 
 
 //OptIn(UnstableApi::class)
