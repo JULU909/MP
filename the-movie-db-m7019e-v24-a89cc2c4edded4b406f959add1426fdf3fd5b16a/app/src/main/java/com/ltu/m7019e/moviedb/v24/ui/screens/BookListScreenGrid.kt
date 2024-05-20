@@ -174,6 +174,7 @@ fun BookListGridItemCard(
     Card(
         modifier = modifier,
         onClick = {
+            print("Work : " + work)
             onBookListItemClicked(work.key)
         },
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
@@ -218,6 +219,7 @@ fun BookListGridItemCard(
                             overflow = TextOverflow.Ellipsis,
                         )
                     }
+
 
                 }
             }

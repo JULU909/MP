@@ -44,9 +44,11 @@ import androidx.compose.ui.graphics.StrokeJoin
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.unit.dp
-import com.ltu.m7019e.moviedb.v24.model.Book
 import com.ltu.m7019e.moviedb.v24.ui.screens.BookListScreen
-import com.ltu.m7019e.moviedb.v24.ui.screens.BookListScreenGrid
+import com.ltu.m7019e.moviedb.v24.ui.screens.BooksDetailScreen
+import com.ltu.m7019e.moviedb.v24.ui.screens.FavouriteMoviesScreen
+
+//import com.ltu.m7019e.moviedb.v24.ui.screens.BookListScreenGrid
 
 
 enum class MovieDBScreen(@StringRes val title: Int) {
@@ -192,18 +194,30 @@ fun MovieDBApp(
         ) {
             composable(route = MovieDBScreen.List.name) {
 
-              BookListScreen(movieDBViewModel = movieDBViewModel, onBookListItemClicked ={} )
+              BookListScreen(movieDBViewModel = movieDBViewModel, onBookListItemClicked = {
+                  navController.navigate(MovieDBScreen.Detail.name)} )
 
 
             }
             composable(route = MovieDBScreen.Grid.name) {
-                BookListScreenGrid(movieDBViewModel = movieDBViewModel, onBookListItemClicked = {})
+//                BookListScreenGrid(movieDBViewModel = movieDBViewModel, onBookListItemClicked = {})
             }
 
-  
-            
-
+            composable(route = MovieDBScreen.Detail.name) {
+                BooksDetailScreen(selectedBookUIState = movieDBViewModel.selectedBookUIState, modifier =Modifier
+                    .fillMaxSize()
+                    .padding(16.dp) , movieDBViewModel = movieDBViewModel, selectedAuthorUiState = movieDBViewModel.selectedAuthorUiState )
             }
+            composable(route = MovieDBScreen.Favourite.name) {
+                FavouriteMoviesScreen(favouriteBookStateUI = movieDBViewModel.favouriteBookStateUI, movieDBViewModel = movieDBViewModel)
+            }
+
+
+
+
+
+
+        }
     }
 }
 

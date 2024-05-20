@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-
+import java.sql.Struct
 
 
 @Serializable
@@ -69,6 +69,11 @@ data class Works(
     @SerialName(value = "author_name")
     var authorName: List<String> = listOf(""),
 
+    @SerialName(value = "author_key")
+    var author_key: List<String> = listOf(""),
+
+
+
     @SerialName(value = "first_publish_year")
     var firstPublishYear: Int? = null,
 )
@@ -112,7 +117,7 @@ data class Author(
     var name: String,
 
     @SerialName(value = "photos")
-    var photos: List<Int> = listOf(),
+    var photos: List<Int>? = listOf(),
 
     @SerialName(value = "birth_date")
     var birthDate: String? = null,

@@ -64,7 +64,8 @@ import com.ltu.m7019e.moviedb.v24.viewmodel.MovieDBViewModel
 fun BookListScreen(
     movieDBViewModel: MovieDBViewModel,
     onBookListItemClicked: (String) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+
 ) {
     Column {
         Row {
@@ -87,7 +88,8 @@ fun BookListScreen(
                                 onBookListItemClicked,
                                 modifier = Modifier
                                     .padding(12.dp)
-                                    .width(300.dp)
+                                    .width(300.dp),
+                                movieDBViewModel = movieDBViewModel
                             )
                         }
                     }
@@ -112,20 +114,21 @@ fun BookListScreen(
             }
         Spacer(modifier = Modifier.size(8.dp))
         Text(
-            text = "Top Authors", //change with API
+            text = "Classic Books", //change with API
             style = MaterialTheme.typography.headlineSmall
         )
         when (val bookUiState = movieDBViewModel.bookUiState) {
             is BooksUIState.Success -> {
 //            Text(text = "Trending Works (this week):")
                 LazyRow(modifier = modifier) {
-                    items(bookUiState.works) { work ->
+                    items(bookUiState.classicWorks) { work ->
                         BookListItemCard(
                             work = work,
                             onBookListItemClicked,
                             modifier = Modifier
                                 .padding(12.dp)
-                                .width(300.dp)
+                                .width(300.dp),
+                            movieDBViewModel = movieDBViewModel
                         )
                     }
                 }
@@ -157,11 +160,15 @@ fun BookListScreen(
 fun BookListItemCard(
     work: Works,
     onBookListItemClicked: (String) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    movieDBViewModel: MovieDBViewModel,
 ) {
     Card(
         modifier = modifier.fillMaxWidth(),
         onClick = {
+            movieDBViewModel.selectWork(work)
+            println("Author : " + work.author_key[0])
+            movieDBViewModel.setSelectedAuthor(work.author_key[0].toString())
             onBookListItemClicked(work.key)
         },
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
@@ -221,6 +228,7 @@ fun BookListItemCard(
                 Button(
                     onClick = {
                         isFavourite = !isFavourite
+                        movieDBViewModel.addFavourite(work)
                         //  onMovieFavouriteItemClicked(movie)
                     },
                     modifier = Modifier

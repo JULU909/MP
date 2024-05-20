@@ -16,6 +16,8 @@ data class TrendingWorksQueryResponse(
 
     @SerialName(value = "hours")
     var hours: Int
+
+
 )
 
 @Serializable
